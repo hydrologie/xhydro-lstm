@@ -9,7 +9,7 @@
       "github_username": "hydrologie",
       "project_name": "xhydro-lstm",
       "project_slug": "xhydro_lstm",
-      "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
+      "project_short_description": "Hydrological modelling using LSTMs",
       "pypi_username": "richardarsenault",
       "version": "0.1.0",
       "use_pytest": "y",
