@@ -14,7 +14,7 @@ xhydro-lstm
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
+Hydrological modelling using LSTMs
 
 * Free software: Apache Software License 2.0
 * Documentation: https://xhydro-lstm.readthedocs.io.
@@ -41,8 +41,8 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/hydrologie/xhydro-lstm/actions
         :alt: Build Status
 
-.. |coveralls| image:: https://coveralls.io/repos/github/hydrologie/xhydro_lstm/badge.svg
-        :target: https://coveralls.io/github/hydrologie/xhydro_lstm
+.. |coveralls| image:: https://coveralls.io/repos/github/hydrologie/xhydro-lstm/badge.svg
+        :target: https://coveralls.io/github/hydrologie/xhydro-lstm
         :alt: Coveralls
 
 .. |docs| image:: https://readthedocs.org/projects/xhydro-lstm/badge/?version=latest

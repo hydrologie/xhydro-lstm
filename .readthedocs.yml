@@ -16,7 +16,7 @@ build:
     python: "mambaforge-22.9"
   jobs:
     pre_build:
-      - sphinx-apidoc -o docs/apidoc --private --module-first xhydro_lstm
+      - sphinx-apidoc -o docs/apidoc --private --module-first src/xhydro_lstm
       - sphinx-build -M gettext docs docs/_build
 
 conda:
