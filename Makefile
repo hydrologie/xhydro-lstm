@@ -81,7 +81,7 @@ initialize-translations: clean-docs ## initialize translations, ignoring autodoc
 	sphinx-intl update -p docs/_build/gettext -d docs/locales -l fr
 
 autodoc: clean-docs ## create sphinx-apidoc files:
-	sphinx-apidoc -o docs/apidoc --private --module-first xhydro_lstm
+	sphinx-apidoc -o docs/apidoc --private --module-first src/xhydro_lstm
 
 linkcheck: autodoc ## run checks over all external links found throughout the documentation
 	$(MAKE) -C docs linkcheck

@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/Ouranosinc/cookiecutter-pypackage",
-  "commit": "3d54a051d7983ce273c4e88e9c88cf5b8ca5754b",
+  "commit": "5a2bb58673b5901c51a5b8e242971bfaf9151c5c",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -22,7 +22,7 @@
       "create_author_file": "y",
       "open_source_license": "Apache Software License 2.0",
       "generated_with_cruft": "y",
-      "__gh_slug": "hydrologie/xhydro_lstm",
+      "__gh_slug": "https://github.com/hydrologie/xhydro-lstm",
       "_template": "https://github.com/Ouranosinc/cookiecutter-pypackage"
     }
   },

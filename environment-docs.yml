@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python >=3.12,<3.13
   - sphinx
   - pandoc
   - sphinx-rtd-theme >=1.0
