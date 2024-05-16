@@ -12,7 +12,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/hydrologie/xhydro_lstm/issues.
+Report bugs at https://github.com/hydrologie/xhydro-lstm/issues.
 
 If you are reporting a bug, please include:
 
@@ -38,7 +38,7 @@ xhydro-lstm could always use more documentation, whether as part of the official
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/hydrologie/xhydro_lstm/issues.
+The best way to send feedback is to file an issue at https://github.com/hydrologie/xhydro-lstm/issues.
 
 If you are proposing a feature:
 

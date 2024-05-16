@@ -10,7 +10,7 @@ To install xhydro-lstm, run this command in your terminal:
 
 .. code-block:: console
 
-    $ python -m pip install xhydro_lstm
+    $ python -m pip install xhydro-lstm
 
 This is the preferred method to install xhydro-lstm, as it will always install the most recent stable release.
 
@@ -30,13 +30,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git@github.com:hydrologie/xhydro_lstm
+    $ git clone git@github.com:hydrologie/xhydro-lstm
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/hydrologie/xhydro_lstm/tarball/main
+    $ curl -OJL https://github.com/hydrologie/xhydro-lstm/tarball/main
 
 Once you have a copy of the source, you can install it with:
 
@@ -45,5 +45,5 @@ Once you have a copy of the source, you can install it with:
     $ python -m pip install .
 
 
-.. _Github repo: https://github.com/hydrologie/xhydro_lstm
-.. _tarball: https://github.com/hydrologie/xhydro_lstm/tarball/main
+.. _Github repo: https://github.com/hydrologie/xhydro-lstm
+.. _tarball: https://github.com/hydrologie/xhydro-lstm/tarball/main
