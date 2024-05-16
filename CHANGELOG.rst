@@ -24,5 +24,5 @@ Contributors: Trevor James Smith (:user:`Zeitsperre`)
 
 Changes
 ^^^^^^^
-* Generated the first version of the package using the cookiecutter template (`Ouranosinc/cookiecutter-pypackage <https://github.com/Ouranosinc/cookiecutter-pypackage>`_). (:pull:`13`)
+* Generated the first version of the package using the cookiecutter template (`Ouranosinc/cookiecutter-pypackage <https://github.com/Ouranosinc/cookiecutter-pypackage>`_). (:issue:`1`, :pull:`13`)
 * First release on PyPI.
