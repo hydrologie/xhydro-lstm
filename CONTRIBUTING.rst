@@ -76,7 +76,7 @@ Ready to contribute? Here's how to set up ``xhydro-lstm`` for local development.
 
         git clone git@github.com:your_name_here/xhydro-lstm.git
 
-#. Install your local copy into a development environment.You can create a new Anaconda development environment with:
+#. Install your local copy into a development environment. You can create a new Anaconda development environment with:
 
     .. code-block:: console
 
