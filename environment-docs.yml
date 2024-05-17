@@ -2,7 +2,7 @@ name: xhydro_lstm
 channels:
   - conda-forge
 dependencies:
-  - python >=3.12,<3.13
+  - python >=3.11,<3.12
   - tensorflow >=2.10
   - sphinx
   - pandoc
