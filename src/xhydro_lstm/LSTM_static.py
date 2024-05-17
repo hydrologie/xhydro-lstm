@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras.backend as k
 from tensorflow.keras.models import load_model
-
 from xhydro.modelling.obj_funcs import get_objective_function
 
 from .create_datasets import create_lstm_dataset, create_lstm_dataset_local
