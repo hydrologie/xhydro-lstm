@@ -76,7 +76,7 @@ Ready to contribute? Here's how to set up ``xhydro-lstm`` for local development.
 
         git clone git@github.com:your_name_here/xhydro-lstm.git
 
-#. Install your local copy into a development environment. You can create a new Anaconda development environment with:
+#. Install your local copy into a development environment.You can create a new Anaconda development environment with:
 
     .. code-block:: console
 
@@ -84,7 +84,7 @@ Ready to contribute? Here's how to set up ``xhydro-lstm`` for local development.
         conda activate xhydro_lstm
         make dev
 
-  This installs ``xhydro_lstm`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, ``make dev`` also installs the ``pre-commit`` hooks to your local clone.
+  This installs ``xhydro_lstm`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, `make dev` also installs the ``pre-commit`` hooks to your local clone.
 
   On commit, ``pre-commit`` will check that ``black``, ``blackdoc``, ``isort``, ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
 
@@ -94,7 +94,7 @@ Ready to contribute? Here's how to set up ``xhydro-lstm`` for local development.
 
         pre-commit run -a
 
-  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the ``--no-verify`` flag to `git commit`.
+  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the `--no-verify` flag to `git commit`.
 
 #. Create a branch for local development:
 
@@ -137,9 +137,9 @@ Ready to contribute? Here's how to set up ``xhydro-lstm`` for local development.
         # To simply test that the docs pass build checks
         python -m tox -e docs
 
-#. Once your Pull Request has been accepted and merged to the ``main`` branch, several automated workflows will be triggered:
+#. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
-    - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the ``main`` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
+    - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the `main` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
     - `ReadTheDocs` will automatically build the documentation and publish it to the `latest` branch of `xhydro_lstm` documentation website.
     - If your branch is not a fork (ie: you are a maintainer), your branch will be automatically deleted.
 
@@ -150,7 +150,7 @@ Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
 
-#. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ for all new lines of code. You can use the ``--cov-report html --cov xhydro_lstm`` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
+#. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ for all new lines of code. You can use the `--cov-report html --cov xhydro_lstm` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
 
 #. If the pull request adds functionality, the docs should also be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
 
@@ -163,9 +163,15 @@ To run a subset of tests:
 
 .. code-block:: console
 
+    python -m pytest tests/test_xhydro_lstm.py
 
-    python -m pytest tests.test_xhydro_lstm
+You can also directly call a specific test class or test function using:
 
+.. code-block:: console
+
+    python -m pytest tests/test_xhydro_lstm.py::TestClassName::test_function_name
+
+For more information on running tests, see the `pytest documentation <https://docs.pytest.org/en/latest/usage.html>`_.
 
 To run specific code style checks:
 
@@ -174,10 +180,10 @@ To run specific code style checks:
     python -m black --check xhydro_lstm tests
     python -m isort --check xhydro_lstm tests
     python -m blackdoc --check xhydro_lstm docs
-    python -m ruff xhydro_lstm tests
+    python -m ruff check xhydro_lstm tests
     python -m flake8 xhydro_lstm tests
 
-To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` (or `conda`) into your environment.
+To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with ``pip`` (or ``conda``) into your environment.
 
 Code of Conduct
 ---------------
