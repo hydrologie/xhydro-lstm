@@ -55,13 +55,13 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	ruff check src/xhydro_lstm tests
-	flake8 --config=.flake8 src/xhydro_lstm tests
+	python -m ruff check src/xhydro_lstm tests
+	python -m flake8 --config=.flake8 src/xhydro_lstm tests
 
 lint/black: ## check style with black
-	black --check src/xhydro_lstm tests
-	blackdoc --check src/xhydro_lstm docs
-	isort --check src/xhydro_lstm tests
+	python -m black --check src/xhydro_lstm tests
+	python -m blackdoc --check src/xhydro_lstm docs
+	python -m isort --check src/xhydro_lstm tests
 
 lint: lint/flake8 lint/black ## check style
 
@@ -72,9 +72,9 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source src/xhydro_lstm -m pytest
-	coverage report -m
-	coverage html
+	python -m coverage run --source src/xhydro_lstm -m pytest
+	python -m coverage report -m
+	python -m coverage html
 	$(BROWSER) htmlcov/index.html
 initialize-translations: clean-docs ## initialize translations, ignoring autodoc-generated files
 	${MAKE} -C docs gettext
