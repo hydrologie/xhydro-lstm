@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python >=3.9,<3.13
+  - tensorflow >=2.10
   # Dev tools and testing
   - pip >=23.3.0
   - bump-my-version >=0.18.3

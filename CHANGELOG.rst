@@ -5,11 +5,11 @@ Changelog
 `Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
 ------------------------------------------------------------------
 
-Contributors:
+Contributors: Richard Arsenault (:user:`richardarsenault`)
 
 Changes
 ^^^^^^^
-* No change.
+* First functional version of the package. (:pull:`14`)
 
 Fixes
 ^^^^^
