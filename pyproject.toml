@@ -33,13 +33,13 @@ classifiers = [
 ]
 dynamic = ["description", "version"]
 dependencies = [
-    "charset-normalizer==3.1.0",
-    "libnetcdf",
-    "scikit-learn",
-    "tensorflow[and-cuda] >=2.10",
-    "xarray",
-    "netcdf4",
-    "xhydro",
+  "charset-normalizer==3.1.0",
+  "libnetcdf",
+  "scikit-learn",
+  "tensorflow[and-cuda] >=2.10",
+  "xarray",
+  "netcdf4",
+  "xhydro"
 ]
 
 [project.optional-dependencies]

@@ -7,6 +7,7 @@ from importlib.util import find_spec
 
 import pytest
 
+
 @pytest.fixture
 def response():
     """Sample pytest fixture.

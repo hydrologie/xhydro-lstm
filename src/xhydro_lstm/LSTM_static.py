@@ -7,8 +7,6 @@ import tensorflow as tf
 import tensorflow.keras.backend as k
 from tensorflow.keras.models import load_model
 
-
-
 from .create_datasets import create_lstm_dataset, create_lstm_dataset_local
 
 __all__ = [
@@ -703,6 +701,7 @@ def run_trained_model(
 
     return kge, flows
 
+
 def obj_fun_kge(qobs, qsim):
     """
     # This function computes the Kling-Gupta Efficiency (KGE) criterion
@@ -719,13 +718,13 @@ def obj_fun_kge(qobs, qsim):
     r = np.corrcoef(qsim, qobs)[0, 1]
 
     # Compute the dimensionless bias ratio b (beta)
-    b = (np.mean(qsim) / np.mean(qobs))
+    b = np.mean(qsim) / np.mean(qobs)
 
     # Compute the dimensionless variability ratio g (gamma)
     g = (np.std(qsim) / np.mean(qsim)) / (np.std(qobs) / np.mean(qobs))
 
     # Compute the Kling-Gupta Efficiency (KGE) modified criterion
-    kge = 1 - np.sqrt((r - 1) ** 2 + (b - 1) ** 2 + (g - 1) ** 2);
+    kge = 1 - np.sqrt((r - 1) ** 2 + (b - 1) ** 2 + (g - 1) ** 2)
 
     # In some cases, the KGE can return nan values which will force some
     # optimization algorithm to crash. Force the worst value possible instead.
@@ -733,6 +732,7 @@ def obj_fun_kge(qobs, qsim):
         kge = -np.inf
 
     return kge
+
 
 def run_trained_model_local(
     arr_dynamic: np.ndarray,
