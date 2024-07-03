@@ -5,7 +5,6 @@ import tensorflow as tf
 import tensorflow.keras.backend as k
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
-# TODO: Cannot use star imports, pre-commit screams.
 from .create_datasets import (
     create_dataset_flexible,
     create_dataset_flexible_local,
