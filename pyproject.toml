@@ -67,7 +67,7 @@ dev = [
 ]
 docs = [
   # Documentation and examples
-  "sphinx",
+  "sphinx >=7.0.0",
   "sphinx-codeautolink",
   "sphinx-copybutton",
   "sphinx-intl",

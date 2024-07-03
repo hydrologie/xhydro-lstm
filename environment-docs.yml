@@ -9,7 +9,7 @@ dependencies:
   - scikit-learn
   - tensorflow[and-cuda] >=2.10
   - xarray
-  - sphinx
+  - sphinx >=7.0.0
   - pandoc
   - sphinx-rtd-theme >=1.0
   - sphinx-autoapi
