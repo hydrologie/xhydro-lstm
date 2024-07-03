@@ -32,7 +32,15 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython"
 ]
 dynamic = ["description", "version"]
-dependencies = ["tensorflow >=2.10"]
+dependencies = [
+    "charset-normalizer==3.1.0",
+    "libnetcdf",
+    "scikit-learn",
+    "tensorflow[and-cuda] >=2.10",
+    "xarray",
+    "netcdf4",
+    "xhydro",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -54,7 +62,8 @@ dev = [
   "blackdoc ==0.3.9",
   "isort ==5.13.2",
   "ruff >=0.3.0",
-  "pre-commit >=3.3.2"
+  "pre-commit >=3.3.2",
+  "xhydro"
 ]
 docs = [
   # Documentation and examples
@@ -67,7 +76,8 @@ docs = [
   "pandoc",
   "ipython",
   "ipykernel",
-  "jupyter_client"
+  "jupyter_client",
+  "xhydro"
 ]
 all = ["xhydro-lstm[dev]", "xhydro-lstm[docs]"]
 

@@ -3,7 +3,7 @@
 import os
 
 import pooch
-from xhydro.lstm_tools.lstm_controller import (
+from xhydro_lstm.lstm_controller import (
     control_local_lstm_training,
     control_regional_lstm_training,
 )

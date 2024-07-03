@@ -6,7 +6,8 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras.backend as k
 from tensorflow.keras.models import load_model
-from xhydro.modelling.obj_funcs import get_objective_function
+
+
 
 from .create_datasets import create_lstm_dataset, create_lstm_dataset_local
 
@@ -101,7 +102,7 @@ class TrainingGenerator(tf.keras.utils.Sequence):
         batch_x_q_stds = self.x_q_stds[inds]
         batch_y = self.y[inds]
 
-        return [np.array(batch_x), np.array(batch_x_static)], np.vstack(
+        return (np.array(batch_x), np.array(batch_x_static)), np.vstack(
             (np.array(batch_y), np.array(batch_x_q_stds))
         ).T
 
@@ -147,7 +148,7 @@ class TrainingGeneratorLocal(tf.keras.utils.Sequence):
         batch_x = self.x[inds]
         batch_y = self.y[inds]
 
-        return [np.array(batch_x)], [np.array(batch_y)]
+        return (np.array(batch_x)), (np.array(batch_y))
 
     def on_epoch_end(self):
         """Shuffle the dataset before the next batch sampling to ensure randomness, helping convergence."""
@@ -190,7 +191,7 @@ class TestingGenerator(tf.keras.utils.Sequence):
         batch_x_static = self.x_static[
             idx * self.batch_size : (idx + 1) * self.batch_size
         ]
-        return [np.array(batch_x), np.array(batch_x_static)], np.array(batch_x_static)
+        return (np.array(batch_x), np.array(batch_x_static)), np.array(batch_x_static)
 
 
 class TestingGeneratorLocal(tf.keras.utils.Sequence):
@@ -300,7 +301,7 @@ def _simple_regional_lstm(
     n_dynamic_features: int,
     n_static_features: int,
     training_func: str,
-    checkpoint_path: str = "tmp.h5",
+    checkpoint_path: str = "tmp.keras",
 ):
     """Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
 
@@ -330,7 +331,7 @@ def _simple_regional_lstm(
         List of tensorflow objects that allow performing operations after each training epoch.
     """
     x_in_365 = tf.keras.layers.Input(shape=(window_size, n_dynamic_features))
-    x_in_static = tf.keras.layers.Input(shape=n_static_features)
+    x_in_static = tf.keras.layers.Input(shape=(n_static_features,))
 
     # LSTM 365 day
     x_365 = tf.keras.layers.LSTM(128, return_sequences=True)(x_in_365)
@@ -379,7 +380,7 @@ def _simple_local_lstm(
     window_size: int,
     n_dynamic_features: int,
     training_func: str,
-    checkpoint_path: str = "tmp.h5",
+    checkpoint_path: str = "tmp.keras",
 ):
     """Define the local LSTM model structure and hyperparameters to use.
 
@@ -454,7 +455,7 @@ def _dummy_regional_lstm(
     n_dynamic_features: int,
     n_static_features: int,
     training_func: str,
-    checkpoint_path: str = "tmp.h5",
+    checkpoint_path: str = "tmp.keras",
 ):
     """Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
 
@@ -484,7 +485,7 @@ def _dummy_regional_lstm(
         List of tensorflow objects that allow performing operations after each training epoch.
     """
     x_in_365 = tf.keras.layers.Input(shape=(window_size, n_dynamic_features))
-    x_in_static = tf.keras.layers.Input(shape=n_static_features)
+    x_in_static = tf.keras.layers.Input(shape=(n_static_features,))
 
     # LSTM 365 day
     x_365 = tf.keras.layers.LSTM(64, return_sequences=False)(x_in_365)
@@ -527,7 +528,7 @@ def _dummy_local_lstm(
     window_size: int,
     n_dynamic_features: int,
     training_func: str,
-    checkpoint_path: str = "tmp.h5",
+    checkpoint_path: str = "tmp.keras",
 ):
     """Define the local LSTM model structure and hyperparameters to use.
 
@@ -697,11 +698,41 @@ def run_trained_model(
     y = y * drainage_area / 86.4
 
     # Compute the Kling-Gupta Efficiency (KGE) for the current watershed
-    kge = get_objective_function(qobs=y, qsim=y_pred, obj_func="kge")
+    kge = obj_fun_kge(qobs=y, qsim=y_pred)
     flows = np.array([y, y_pred])
 
     return kge, flows
 
+def obj_fun_kge(qobs, qsim):
+    """
+    # This function computes the Kling-Gupta Efficiency (KGE) criterion
+    :param Qobs: Observed streamflow
+    :param Qsim: Simulated streamflow
+    :return: kge: KGE criterion value
+    """
+    # Remove all nans from both observed and simulated streamflow
+    ind_nan = np.isnan(qobs)
+    qobs = qobs[~ind_nan]
+    qsim = qsim[~ind_nan]
+
+    # Compute the dimensionless correlation coefficient
+    r = np.corrcoef(qsim, qobs)[0, 1]
+
+    # Compute the dimensionless bias ratio b (beta)
+    b = (np.mean(qsim) / np.mean(qobs))
+
+    # Compute the dimensionless variability ratio g (gamma)
+    g = (np.std(qsim) / np.mean(qsim)) / (np.std(qobs) / np.mean(qobs))
+
+    # Compute the Kling-Gupta Efficiency (KGE) modified criterion
+    kge = 1 - np.sqrt((r - 1) ** 2 + (b - 1) ** 2 + (g - 1) ** 2);
+
+    # In some cases, the KGE can return nan values which will force some
+    # optimization algorithm to crash. Force the worst value possible instead.
+    if np.isnan(kge):
+        kge = -np.inf
+
+    return kge
 
 def run_trained_model_local(
     arr_dynamic: np.ndarray,
@@ -761,7 +792,7 @@ def run_trained_model_local(
     y_pred = np.squeeze(y_pred)
 
     # Compute the Kling-Gupta Efficiency (KGE) for the watershed
-    kge = get_objective_function(qobs=y, qsim=y_pred, obj_func="kge")
+    kge = obj_fun_kge(qobs=y, qsim=y_pred)
     flows = np.array([y, y_pred])
 
     return kge, flows

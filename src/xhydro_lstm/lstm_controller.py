@@ -4,7 +4,7 @@ import os
 import tempfile
 from pathlib import Path
 
-from xhydro.lstm_tools.lstm_functions import (
+from .lstm_functions import (
     perform_initial_train,
     perform_initial_train_local,
     run_model_after_training,
@@ -96,8 +96,8 @@ def control_regional_lstm_training(
         deviation of streamflow as inputs. For a local model, the "kge" function is preferred. Defaults to "nse_scaled"
         if unspecified by the user. Can be one of ["kge", "nse_scaled"].
     filename_base : str
-        Name of the trained model that will be trained if it does not already exist. Do not add the ".h5" extension, it
-        will be added automatically.
+        Name of the trained model that will be trained if it does not already exist. Do not add the ".keras" extension,
+        it will be added automatically.
     simulation_phases : list of str
         List of periods to generate the simulations. Can contain ['train','valid','test','full'], corresponding to the
         training, validation, testing and complete periods, respectively.
@@ -137,7 +137,7 @@ def control_regional_lstm_training(
             )
         tmpdir = tempfile.mkdtemp()
         # This needs to be a string for the ModelCheckpoint Callback to work. a PosixPath fails.
-        name_of_saved_model = str(Path(tmpdir) / f"{filename_base}.h5")
+        name_of_saved_model = str(Path(tmpdir) / f"{filename_base}.keras")
 
     # Import and scale dataset
     (
@@ -304,8 +304,8 @@ def control_local_lstm_training(
         deviation of streamflow as inputs. For a local model, the "kge" function is preferred. Defaults to "kge" if
         unspecified by the user. Can be one of ["kge", "nse_scaled"].
     filename_base : str
-        Name of the trained model that will be trained if it does not already exist. Do not add the ".h5" extension, it
-        will be added automatically.
+        Name of the trained model that will be trained if it does not already exist. Do not add the ".keras" extension,
+        it will be added automatically.
     simulation_phases : list of str
         List of periods to generate the simulations. Can contain ['train','valid','test','full'], corresponding to the
         training, validation, testing and complete periods, respectively.
@@ -345,7 +345,7 @@ def control_local_lstm_training(
             )
         tmpdir = tempfile.mkdtemp()
         # This needs to be a string for the ModelCheckpoint Callback to work. a PosixPath fails.
-        name_of_saved_model = str(Path(tmpdir) / f"{filename_base}.h5")
+        name_of_saved_model = str(Path(tmpdir) / f"{filename_base}.keras")
 
     # Import and scale dataset
     arr_dynamic, train_idx, valid_idx, test_idx, all_idx = scale_dataset_local(

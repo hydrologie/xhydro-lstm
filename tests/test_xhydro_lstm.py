@@ -7,9 +7,6 @@ from importlib.util import find_spec
 
 import pytest
 
-from xhydro_lstm import xhydro_lstm  # noqa: F401
-
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.

@@ -2,8 +2,14 @@ name: xhydro_lstm
 channels:
   - conda-forge
 dependencies:
+  - charset-normalizer==3.1.0
+  - libnetcdf
+  - netcdf4
   - python >=3.9,<3.13
-  - tensorflow >=2.10
+  - scikit-learn
+  - tensorflow[and-cuda] >=2.10
+  - xarray
+  - xhydro
   # Dev tools and testing
   - pip >=23.3.0
   - bump-my-version >=0.18.3
@@ -20,3 +26,5 @@ dependencies:
   - blackdoc ==0.3.9
   - isort ==5.13.2
   - pre-commit >=3.3.2
+  - pip:
+      - xhydro

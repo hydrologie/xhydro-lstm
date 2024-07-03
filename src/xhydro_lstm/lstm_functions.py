@@ -6,7 +6,7 @@ import tensorflow.keras.backend as k
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # TODO: Cannot use star imports, pre-commit screams.
-from xhydro.lstm_tools.create_datasets import (
+from .create_datasets import (
     create_dataset_flexible,
     create_dataset_flexible_local,
     create_lstm_dataset,
@@ -14,7 +14,7 @@ from xhydro.lstm_tools.create_datasets import (
     remove_nans_func,
     remove_nans_func_local,
 )
-from xhydro.lstm_tools.LSTM_static import (
+from .LSTM_static import (
     TrainingGenerator,
     TrainingGeneratorLocal,
     get_list_of_LSTM_models,
