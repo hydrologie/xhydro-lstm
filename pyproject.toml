@@ -24,12 +24,11 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
+#  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython"
 ]
 dynamic = ["description", "version"]
@@ -84,7 +83,6 @@ all = ["xhydro-lstm[dev]", "xhydro-lstm[docs]"]
 
 [tool.black]
 target-version = [
-  "py38",
   "py39",
   "py310",
   "py311",
@@ -205,11 +203,11 @@ exclude = [
 
 [tool.isort]
 profile = "black"
-py_version = 38
+py_version = 39
 
 [tool.mypy]
 files = "."
-python_version = 3.8
+python_version = 3.9
 show_error_codes = true
 strict = true
 warn_no_return = true
@@ -257,7 +255,6 @@ testpaths = "tests"
 [tool.ruff]
 src = ["xhydro_lstm"]
 line-length = 150
-target-version = "py38"
 exclude = [
   ".eggs",
   ".git",
