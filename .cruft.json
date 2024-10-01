@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/Ouranosinc/cookiecutter-pypackage",
-  "commit": "f9e0b049711af2023e9a3f5df594f4dbc25b07c1",
+  "commit": "1d9ee5f08d3e8e4f78a4aabb75e2ce4eff8750bf",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -9,7 +9,7 @@
       "github_username": "hydrologie",
       "project_name": "xhydro-lstm",
       "project_slug": "xhydro_lstm",
-      "project_short_description": "Hydrological modelling using LSTMs",
+      "project_short_description": "Hydrological modelling using LSTMs.",
       "pypi_username": "richardarsenault",
       "version": "0.1.0",
       "use_pytest": "y",

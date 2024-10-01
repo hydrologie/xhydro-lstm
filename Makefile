@@ -57,6 +57,7 @@ clean-test: ## remove test and coverage artifacts
 lint/flake8: ## check style with flake8
 	python -m ruff check src/xhydro_lstm tests
 	python -m flake8 --config=.flake8 src/xhydro_lstm tests
+	python -m numpydoc lint src/xhydro_lstm/**.py
 
 lint/black: ## check style with black
 	python -m black --check src/xhydro_lstm tests
@@ -69,7 +70,7 @@ test: ## run tests quickly with the default Python
 	python -m pytest
 
 test-all: ## run tests on every Python version with tox
-	tox
+	python -m tox
 
 coverage: ## check code coverage quickly with the default Python
 	python -m coverage run --source src/xhydro_lstm -m pytest

@@ -24,11 +24,11 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  # "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython"
 ]
 dynamic = ["description", "version"]
@@ -37,24 +37,25 @@ dependencies = []
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  "pip >=23.3.0",
-  "bump-my-version >=0.18.3",
-  "watchdog >=3.0.0",
-  "flake8 >=6.1.0",
+  "pip >=24.2.0",
+  "bump-my-version >=0.26.0",
+  "watchdog >=4.0.0",
+  "flake8 >=7.1.1",
   "flake8-alphabetize >=0.0.21",
   "flake8-rst-docstrings >=0.3.0",
-  "flit >=3.9.0",
-  "tox >=4.5.1",
-  "coverage >=7.0.0",
-  "coveralls >=3.3.1",
+  "flit >=3.9.0,<4.0",
+  "tox >=4.18.0",
+  "coverage >=7.5.0",
+  "coveralls >=4.0.1",
   "mypy",
-  "pytest >=7.3.1",
-  "pytest-cov >=4.0.0",
+  "numpydoc >=1.8.0",
+  "pytest >=8.3.2",
+  "pytest-cov >=5.0.0",
   "black ==24.8.0",
   "blackdoc ==0.3.9",
   "isort ==5.13.2",
-  "ruff >=0.3.0",
-  "pre-commit >=3.3.2"
+  "ruff >=0.5.7",
+  "pre-commit >=3.5.0"
 ]
 docs = [
   # Documentation and examples
@@ -72,22 +73,21 @@ docs = [
 all = ["xhydro-lstm[dev]", "xhydro-lstm[docs]"]
 
 [project.urls]
-# "Homepage" = "https://xhydro_lstm.readthedocs.io/"
-# "Changelog" = "https://xhydro_lstm.readthedocs.io/en/stable/history.html"
+"Homepage" = "https://xhydro_lstm.readthedocs.io/"
+"Changelog" = "https://xhydro-lstm.readthedocs.io/en/stable/changelog.html"
 # "About Ouranos" = "https://www.ouranos.ca/en/"
 "Issue tracker" = "https://github.com/hydrologie/xhydro-lstm/issues"
-"changelog" = "https://github.com/hydrologie/xhydro-lstm/blob/main/CHANGELOG.rst"
-"homepage" = "https://github.com/hydrologie/xhydro-lstm"
+"Source" = "https://github.com/hydrologie/xhydro-lstm"
 
 [tool]
 
 [tool.black]
 target-version = [
-  "py38",
   "py39",
   "py310",
   "py311",
-  "py312"
+  "py312",
+  "py313"
 ]
 
 [tool.bumpversion]
@@ -102,6 +102,33 @@ serialize = [
   "{major}.{minor}.{patch}-{release}.{build}",
   "{major}.{minor}.{patch}"
 ]
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.rst"
+include_bumps = ["release"]
+search = """\
+`Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
+------------------------------------------------------------------
+"""
+replace = """\
+`Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
+------------------------------------------------------------------
+
+Contributors:
+
+Changes
+^^^^^^^
+* No change.
+
+Fixes
+^^^^^
+* No change.
+
+.. _changes_{new_version}:
+
+`v{new_version} <https://github.com/hydrologie/xhydro_lstm/tree/{new_version}>`_
+----------------------------------------------------------------
+"""
 
 [[tool.bumpversion.files]]
 filename = "src/xhydro_lstm/__init__.py"
@@ -128,10 +155,13 @@ values = [
   "release"
 ]
 
+[tool.coverage.paths]
+source = ["src/xhydro_lstm/", "*/site-packages/xhydro_lstm/"]
+
 [tool.coverage.run]
-relative_files = true
-include = ["src/xhydro_lstm/*"]
 omit = ["tests/*.py"]
+relative_files = true
+source = ["xhydro_lstm"]
 
 [tool.flit.sdist]
 include = [
@@ -173,7 +203,7 @@ exclude = [
 
 [tool.isort]
 profile = "black"
-py_version = 38
+py_version = 39
 
 [tool.mypy]
 files = "."
@@ -194,6 +224,26 @@ allow_untyped_defs = true
 disable_error_code = "attr-defined"
 ignore_missing_imports = true
 
+[tool.numpydoc_validation]
+checks = [
+  "all", # report on all checks, except the below
+  "EX01",
+  "SA01",
+  "ES01"
+]
+# remember to use single quotes for regex in TOML
+exclude = [
+  # don't report on objects that match any of these regex
+  '\.undocumented_method$',
+  '\.__repr__$'
+]
+override_SS05 = [
+  # override SS05 to allow docstrings starting with these words
+  '^Process ',
+  '^Assess ',
+  '^Access '
+]
+
 [tool.pytest.ini_options]
 addopts = [
   "--verbose",
@@ -205,7 +255,6 @@ testpaths = "tests"
 [tool.ruff]
 src = ["xhydro_lstm"]
 line-length = 150
-target-version = "py38"
 exclude = [
   ".eggs",
   ".git",
@@ -214,20 +263,37 @@ exclude = [
 ]
 
 [tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.ruff.lint]
-ignore = [
-  "D205",
-  "D400",
-  "D401"
+extend-select = [
+  "RUF022" # unsorted-dunder-all
 ]
+ignore = [
+  "COM", # commas
+  "D205", # blank-line-after-summary
+  "D400", # ends-in-period
+  "D401" # non-imperative-mood
+]
+preview = true
 select = [
-  "C9",
-  "D",
-  "E",
-  "F",
-  "W"
+  "BLE", # blind-except
+  "C90", # mccabe-complexity
+  "D", # docstrings
+  "E", # pycodestyle errors
+  "FLY002", # static-join-to-fstring
+  "G", # logging-format
+  "N", # naming conventions
+  "PERF", # iterator performance
+  "PTH", # pathlib
+  "RUF010", # explicit-f-string-type-conversion
+  "RUF013", # implicit-optional
+  "S", # bandit
+  "UP", # python version conventions
+  "W" # pycodestyle warnings
 ]
 
 [tool.ruff.lint.flake8-bandit]
@@ -237,7 +303,7 @@ check-typed-exception = true
 known-first-party = ["xhydro_lstm"]
 case-sensitive = true
 detect-same-package = false
-lines-after-imports = 1
+lines-after-imports = 2
 no-lines-before = ["future", "standard-library"]
 
 [tool.ruff.lint.mccabe]
@@ -246,6 +312,7 @@ max-complexity = 15
 [tool.ruff.lint.per-file-ignores]
 "docs/**" = ["E402"]
 "src/xhydro_lstm/**/__init__.py" = ["F401", "F403"]
+"tests/**" = ["D100", "D101", "D102", "D103", "S101"]
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 180

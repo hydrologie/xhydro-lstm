@@ -10,7 +10,7 @@ on:
       - README.rst
       - pyproject.toml
       - tests/test_xhydro_lstm.py
-      - xhydro_lstm/__init__.py
+      - src/xhydro_lstm/__init__.py
   pull_request:
 
 concurrency:
@@ -35,65 +35,69 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout Repository
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Set up Python${{ matrix.python-version }}
         uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install tox
+          cache: "pip"
+      - name: Install CI libraries
         run: |
-          python -m pip install tox
+          python -m pip install --require-hashes -r CI/requirements_ci.txt
       - name: Run linting suite
         run: |
           python -m tox -e lint
 
   test-pypi:
-    name: Test with Python${{ matrix.python-version }} (Python${{ matrix.python-version }} + tox)
+    name: Test with Python${{ matrix.python-version }} (tox, ${{ matrix.os }})
     needs: lint
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-          - tox-env: "py38"
-            python-version: "3.8"
-          - tox-env: "py39"
-            python-version: "3.9"
-          - tox-env: "py310"
-            python-version: "3.10"
-          - tox-env: "py311"
-            python-version: "3.11"
-          - tox-env: "py312"
-            python-version: "3.12"
+        os: [ 'ubuntu-latest' ]
+        python-version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          # - "3.13
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
         with:
           egress-policy: audit
       - name: Checkout Repository
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Set up Python${{ matrix.python-version }}
         uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install tox
+          cache: "pip"
+      - name: Install CI libraries
         run: |
-          python -m pip install tox
+          python -m pip install --require-hashes -r CI/requirements_ci.txt
+      - name: Environment Caching
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: .tox
+          key: ${{ matrix.os }}-Python${{ matrix.python-version }}-${{ hashFiles('pyproject.toml', 'tox.ini') }}
       - name: Test with tox
         run: |
-          python -m tox -e ${{ matrix.tox-env }}
+          python -m tox
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_FLAG_NAME: run-${{ matrix.tox-env }}
+          COVERALLS_FLAG_NAME: run-${{ matrix.python-version }}
           COVERALLS_PARALLEL: true
           COVERALLS_SERVICE_NAME: github
 
   test-conda:
-    name: Test with Python${{ matrix.python-version }} (Anaconda)
+    name: Test with Python${{ matrix.python-version }} (Anaconda, ${{ matrix.os }})
     needs: lint
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        os: [ 'ubuntu-latest' ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12" ]
     defaults:
       run:
         shell: bash -l {0}
@@ -103,18 +107,17 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout Repository
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Setup Conda (Micromamba) with Python${{ matrix.python-version }}
         uses: mamba-org/setup-micromamba@f8b8a1e23a26f60a44c853292711bacfd3eac822 # v1.9.0
         with:
           cache-downloads: true
           environment-file: environment-dev.yml
           create-args: >-
-            mamba
             python=${{ matrix.python-version }}
+          micromamba-version: "1.5.10-0"  # pinned to avoid the breaking changes with mamba and micromamba (2.0.0).
       - name: Conda and Mamba versions
         run: |
-          mamba --version
           echo "micromamba $(micromamba --version)"
       - name: Install xhydro-lstm
         run: |
@@ -126,7 +129,7 @@ jobs:
       - name: Test with pytest
         run: |
           python -m pytest --cov xhydro_lstm
-      - name: Report coverage
+      - name: Report Coverage
         run: |
           python -m coveralls
         env:
@@ -140,12 +143,13 @@ jobs:
       - test-pypi
       - test-conda
     runs-on: ubuntu-latest
-    container: python:3-slim
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
       - name: Coveralls Finished
-        run: |
-          python -m pip install --upgrade coveralls
-          python -m coveralls --finish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_SERVICE_NAME: github
+        uses: coverallsapp/github-action@643bc377ffa44ace6394b2b5d0d3950076de9f63 # v2.3.0
+        with:
+          parallel-finished: true

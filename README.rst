@@ -14,7 +14,7 @@ xhydro-lstm
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
 
-Hydrological modelling using LSTMs
+Hydrological modelling using LSTMs.
 
 * Free software: Apache Software License 2.0
 * Documentation: https://xhydro-lstm.readthedocs.io.
