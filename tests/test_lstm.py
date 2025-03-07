@@ -34,9 +34,7 @@ class TestLstmModels:
     window_size = 5  # Number of time step (days) to use in the LSTM model
     train_pct = 10  # Percentage of watersheds used for the training
     valid_pct = 5  # Percentage of watersheds used for the validation
-    use_cpu = (
-        True  # Use CPU as GPU is not guaranteed to be installed with CUDA/CuDNN etc.
-    )
+    use_cpu = True  # Use CPU as GPU is not guaranteed to be installed with CUDA/CuDNN etc.
     use_parallel = False
     do_simulation = True
     filename_base = "LSTM_results"

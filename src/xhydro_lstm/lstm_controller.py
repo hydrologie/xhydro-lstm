@@ -132,8 +132,7 @@ def control_regional_lstm_training(
     if name_of_saved_model is None:
         if not do_train:
             raise ValueError(
-                "Model training is set to False and no existing model is provided. Please provide a "
-                'trained model or set "do_train" to True.'
+                'Model training is set to False and no existing model is provided. Please provide a trained model or set "do_train" to True.'
             )
         tmpdir = tempfile.mkdtemp()
         # This needs to be a string for the ModelCheckpoint Callback to work. a PosixPath fails.
@@ -340,8 +339,7 @@ def control_local_lstm_training(
     if name_of_saved_model is None:
         if not do_train:
             raise ValueError(
-                "Model training is set to False and no existing model is provided. Please provide a "
-                'trained model or set "do_train" to True.'
+                'Model training is set to False and no existing model is provided. Please provide a trained model or set "do_train" to True.'
             )
         tmpdir = tempfile.mkdtemp()
         # This needs to be a string for the ModelCheckpoint Callback to work. a PosixPath fails.
@@ -358,9 +356,7 @@ def control_local_lstm_training(
 
     if do_train:
         # Split into train and valid
-        x_train, y_train, x_valid, y_valid = split_dataset_local(
-            arr_dynamic, train_idx, window_size, valid_idx
-        )
+        x_train, y_train, x_valid, y_valid = split_dataset_local(arr_dynamic, train_idx, window_size, valid_idx)
 
         # Do the main large-scale training
         perform_initial_train_local(

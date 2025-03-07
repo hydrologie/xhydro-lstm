@@ -75,9 +75,7 @@ def create_dataset_flexible(
     arr_qobs = arr_qobs / ds.drainage_area.values[:, np.newaxis] * 86.4
 
     # Prepare the dynamic data array and set qobs as the first value
-    arr_dynamic = np.empty(
-        shape=[n_watersheds, n_days, len(dynamic_var_tags) + 1], dtype=np.float32
-    )
+    arr_dynamic = np.empty(shape=[n_watersheds, n_days, len(dynamic_var_tags) + 1], dtype=np.float32)
     arr_dynamic[:] = np.nan
     arr_dynamic[:, :, 0] = arr_qobs
 
@@ -235,9 +233,7 @@ def create_lstm_dataset(
 
         # remove nans
         if remove_nans:
-            y_w, x_w, x_w_q_std, x_w_static = remove_nans_func(
-                y_w, x_w, x_w_q_std, x_w_static
-            )
+            y_w, x_w, x_w_q_std, x_w_static = remove_nans_func(y_w, x_w, x_w_q_std, x_w_static)
 
         x = np.vstack([x, x_w])
         x_static = np.vstack([x_static, x_w_static])
@@ -314,10 +310,7 @@ def _extract_windows_vectorized(
     max_time = array.shape[0]
 
     # expand_dims are used to convert a 1D array to 2D array.
-    sub_windows = (
-        np.expand_dims(np.arange(sub_window_size), 0)
-        + np.expand_dims(np.arange(max_time - sub_window_size), 0).T
-    )
+    sub_windows = np.expand_dims(np.arange(sub_window_size), 0) + np.expand_dims(np.arange(max_time - sub_window_size), 0).T
     data_array = array[sub_windows]
 
     return data_array
@@ -423,9 +416,7 @@ def _extract_watershed_block_local(arr_dynamic: np.ndarray, window_size: int):
     return x, y
 
 
-def remove_nans_func(
-    y: np.ndarray, x: np.ndarray, x_q_std: np.ndarray, x_static: np.ndarray
-):
+def remove_nans_func(y: np.ndarray, x: np.ndarray, x_q_std: np.ndarray, x_static: np.ndarray):
     """Check for nans in the variable "y" and remove all lines containing those nans in all datasets.
 
     Parameters

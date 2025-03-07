@@ -92,9 +92,7 @@ def scale_dataset(
         Indices of the full period. Contains 2 values per watershed: start and end indices.
     """
     # Create the dataset
-    arr_dynamic, arr_static, arr_qobs = create_dataset_flexible(
-        input_data_filename, dynamic_var_tags, qsim_pos, static_var_tags
-    )
+    arr_dynamic, arr_static, arr_qobs = create_dataset_flexible(input_data_filename, dynamic_var_tags, qsim_pos, static_var_tags)
 
     # TODO : This should be a user-selected option
     # Filter catchments with too many NaNs.
@@ -121,14 +119,10 @@ def scale_dataset(
         train_idx[i, 0] = int(jj[0])  # From this index...
         train_idx[i, 1] = int(jj[number_training_days])  # to this index.
         valid_idx[i, 0] = int(jj[number_training_days])  # From this index...
-        valid_idx[i, 1] = int(
-            jj[number_training_days + number_valid_days]
-        )  # to this index.
-        test_idx[i, 0] = int(
-            jj[number_training_days + number_valid_days]
-        )  # From this index...
+        valid_idx[i, 1] = int(jj[number_training_days + number_valid_days])  # to this index.
+        test_idx[i, 0] = int(jj[number_training_days + number_valid_days])  # From this index...
         test_idx[i, 1] = int(jj[total_number_days - 1])  # to this index.
-        all_idx[i, 0] = int(0)
+        all_idx[i, 0] = 0
         all_idx[i, 1] = int(jj[total_number_days - 1])
 
     # Get watershed numbers list
@@ -149,9 +143,7 @@ def scale_dataset(
     dynamic_data = np.empty((0, n_data))
 
     for tmp in range(0, arr_dynamic.shape[0]):
-        dynamic_data = np.vstack(
-            [dynamic_data, arr_dynamic[tmp, train_idx[tmp, 0] : train_idx[tmp, 1], 1:]]
-        )
+        dynamic_data = np.vstack([dynamic_data, arr_dynamic[tmp, train_idx[tmp, 0] : train_idx[tmp, 1], 1:]])
 
     # Fit the scaler using only the training watersheds
     _ = scaler_dynamic.fit_transform(dynamic_data)
@@ -227,9 +219,7 @@ def scale_dataset_local(
         Indices of the full period. Contains 2 values per watershed: start and end indices.
     """
     # Create the dataset
-    arr_dynamic, arr_qobs = create_dataset_flexible_local(
-        input_data_filename, dynamic_var_tags, qsim_pos
-    )
+    arr_dynamic, arr_qobs = create_dataset_flexible_local(input_data_filename, dynamic_var_tags, qsim_pos)
 
     # Get the indexes of the train, test and valid periods of each catchment.
     train_idx = np.empty([2], dtype=int)
@@ -247,11 +237,9 @@ def scale_dataset_local(
     train_idx[1] = int(jj[number_training_days])  # to this index.
     valid_idx[0] = int(jj[number_training_days])  # From this index...
     valid_idx[1] = int(jj[number_training_days + number_valid_days])  # to this index.
-    test_idx[0] = int(
-        jj[number_training_days + number_valid_days]
-    )  # From this index...
+    test_idx[0] = int(jj[number_training_days + number_valid_days])  # From this index...
     test_idx[1] = int(jj[total_number_days - 1])  # to this index.
-    all_idx[0] = int(0)
+    all_idx[0] = 0
     all_idx[1] = arr_qobs.shape[0]
 
     dynamic_data = arr_dynamic[train_idx[0] : train_idx[1], 1:]
@@ -349,9 +337,7 @@ def split_dataset(
     )
 
     # Remove Nans
-    y_train, x_train, x_train_q_stds, x_train_static = remove_nans_func(
-        y_train, x_train, x_train_q_stds, x_train_static
-    )
+    y_train, x_train, x_train_q_stds, x_train_static = remove_nans_func(y_train, x_train, x_train_q_stds, x_train_static)
 
     # Validation dataset
     x_valid, x_valid_static, x_valid_q_stds, y_valid = create_lstm_dataset(
@@ -364,9 +350,7 @@ def split_dataset(
     )
 
     # Remove nans
-    y_valid, x_valid, x_valid_q_stds, x_valid_static = remove_nans_func(
-        y_valid, x_valid, x_valid_q_stds, x_valid_static
-    )
+    y_valid, x_valid, x_valid_q_stds, x_valid_static = remove_nans_func(y_valid, x_valid, x_valid_q_stds, x_valid_static)
 
     return (
         x_train,
@@ -422,17 +406,13 @@ def split_dataset_local(
         validation points.
     """
     # Training dataset
-    x_train, y_train = create_lstm_dataset_local(
-        arr_dynamic=arr_dynamic, window_size=window_size, idx=train_idx
-    )
+    x_train, y_train = create_lstm_dataset_local(arr_dynamic=arr_dynamic, window_size=window_size, idx=train_idx)
 
     # Remove nans
     y_train, x_train = remove_nans_func_local(y_train, x_train)
 
     # Validation dataset
-    x_valid, y_valid = create_lstm_dataset_local(
-        arr_dynamic=arr_dynamic, window_size=window_size, idx=valid_idx
-    )
+    x_valid, y_valid = create_lstm_dataset_local(arr_dynamic=arr_dynamic, window_size=window_size, idx=valid_idx)
 
     # Remove nans
     y_valid, x_valid = remove_nans_func_local(y_valid, x_valid)

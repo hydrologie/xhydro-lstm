@@ -43,9 +43,7 @@ def get_list_of_LSTM_models(model_structure):
             "dummy_regional_lstm": _dummy_regional_lstm,
         }
     except Exception:
-        raise ValueError(
-            "The LSTM model structure desired is not present in the available model dictionary."
-        )
+        raise ValueError("The LSTM model structure desired is not present in the available model dictionary.")
 
     model_handle = model_structure_dict[model_structure]
 
@@ -100,9 +98,7 @@ class TrainingGenerator(tf.keras.utils.Sequence):
         batch_x_q_stds = self.x_q_stds[inds]
         batch_y = self.y[inds]
 
-        return (np.array(batch_x), np.array(batch_x_static)), np.vstack(
-            (np.array(batch_y), np.array(batch_x_q_stds))
-        ).T
+        return (np.array(batch_x), np.array(batch_x_static)), np.vstack((np.array(batch_y), np.array(batch_x_q_stds))).T
 
     def on_epoch_end(self):
         """Shuffle the dataset before the next batch sampling to ensure randomness, helping convergence."""
@@ -186,9 +182,7 @@ class TestingGenerator(tf.keras.utils.Sequence):
     def __getitem__(self, idx):
         """Get one of the batches by taking the 'batch_size' first elements from the list of remaining indices."""
         batch_x = self.x[idx * self.batch_size : (idx + 1) * self.batch_size]
-        batch_x_static = self.x_static[
-            idx * self.batch_size : (idx + 1) * self.batch_size
-        ]
+        batch_x_static = self.x_static[idx * self.batch_size : (idx + 1) * self.batch_size]
         return (np.array(batch_x), np.array(batch_x_static)), np.array(batch_x_static)
 
 
@@ -248,8 +242,7 @@ def _kge_loss(data, y_pred):
 
     # Compute the dimensionless correlation coefficient
     r = k.sum((y_true - k.mean(y_true)) * (y_pred - k.mean(y_pred))) / (
-        k.sqrt(k.sum((y_true - k.mean(y_true)) ** 2))
-        * k.sqrt(k.sum((y_pred - k.mean(y_pred)) ** 2))
+        k.sqrt(k.sum((y_true - k.mean(y_true)) ** 2)) * k.sqrt(k.sum((y_pred - k.mean(y_pred)) ** 2))
     )
 
     # Compute the dimensionless bias ratio b (beta)
@@ -286,7 +279,7 @@ def _nse_scaled_loss(data, y_pred):
     q_stds = data[:, 1]
     y_pred = y_pred[:, 0]
 
-    eps = float(0.1)
+    eps = 0.1
     squared_error = (y_pred - y_true) ** 2
     weights = 1 / (q_stds + eps) ** 2
     scaled_loss = weights * squared_error
@@ -348,13 +341,9 @@ def _simple_regional_lstm(
 
     model_lstm = tf.keras.models.Model([x_in_365, x_in_static], [x_out])
     if training_func == "nse_scaled":
-        model_lstm.compile(
-            loss=_nse_scaled_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1)
-        )
+        model_lstm.compile(loss=_nse_scaled_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1))
     elif training_func == "kge":
-        model_lstm.compile(
-            loss=_kge_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1)
-        )
+        model_lstm.compile(loss=_kge_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1))
 
     callback = [
         tf.keras.callbacks.ModelCheckpoint(
@@ -365,9 +354,7 @@ def _simple_regional_lstm(
             mode="min",
             verbose=1,
         ),
-        tf.keras.callbacks.EarlyStopping(
-            monitor="val_loss", mode="min", verbose=1, patience=15
-        ),
+        tf.keras.callbacks.EarlyStopping(monitor="val_loss", mode="min", verbose=1, patience=15),
         tf.keras.callbacks.LearningRateScheduler(_step_decay),
     ]
 
@@ -424,9 +411,7 @@ def _simple_local_lstm(
     model_lstm = tf.keras.models.Model([x_in_365], [x_out])
 
     if training_func == "kge":
-        model_lstm.compile(
-            loss=_kge_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1)
-        )
+        model_lstm.compile(loss=_kge_loss, optimizer=tf.keras.optimizers.AdamW(clipnorm=0.1))
     else:
         raise ValueError("training_func can only be kge for the local training model.")
 
@@ -439,9 +424,7 @@ def _simple_local_lstm(
             mode="min",
             verbose=1,
         ),
-        tf.keras.callbacks.EarlyStopping(
-            monitor="val_loss", mode="min", verbose=1, patience=15
-        ),
+        tf.keras.callbacks.EarlyStopping(monitor="val_loss", mode="min", verbose=1, patience=15),
         tf.keras.callbacks.LearningRateScheduler(_step_decay),
     ]
 
@@ -513,9 +496,7 @@ def _dummy_regional_lstm(
             mode="min",
             verbose=1,
         ),
-        tf.keras.callbacks.EarlyStopping(
-            monitor="val_loss", mode="min", verbose=1, patience=15
-        ),
+        tf.keras.callbacks.EarlyStopping(monitor="val_loss", mode="min", verbose=1, patience=15),
         tf.keras.callbacks.LearningRateScheduler(_step_decay),
     ]
 
@@ -557,16 +538,10 @@ def _dummy_local_lstm(
     x_in_365 = tf.keras.layers.Input(shape=(window_size, n_dynamic_features))
 
     # LSTM 365 day
-    x_365 = tf.keras.layers.LSTM(64, return_sequences=False)(
-        x_in_365
-    )  # Single LSTM layer
+    x_365 = tf.keras.layers.LSTM(64, return_sequences=False)(x_in_365)  # Single LSTM layer
     x_365 = tf.keras.layers.Dropout(0.2)(x_365)  # Add dropout layer for robustness
-    x = tf.keras.layers.Dense(8, activation="relu")(
-        x_365
-    )  # Pass to a simple Dense layer with relu activation
-    x_out = tf.keras.layers.Dense(1, activation="relu")(
-        x
-    )  # pass to a 1-unit dense layer representing output flow.
+    x = tf.keras.layers.Dense(8, activation="relu")(x_365)  # Pass to a simple Dense layer with relu activation
+    x_out = tf.keras.layers.Dense(1, activation="relu")(x)  # pass to a 1-unit dense layer representing output flow.
 
     model_lstm = tf.keras.models.Model([x_in_365], [x_out])
 
@@ -584,9 +559,7 @@ def _dummy_local_lstm(
             mode="min",
             verbose=1,
         ),
-        tf.keras.callbacks.EarlyStopping(
-            monitor="val_loss", mode="min", verbose=1, patience=15
-        ),
+        tf.keras.callbacks.EarlyStopping(monitor="val_loss", mode="min", verbose=1, patience=15),
         tf.keras.callbacks.LearningRateScheduler(_step_decay),
     ]
 
@@ -671,9 +644,7 @@ def run_trained_model(
     """
     # Delete and reload the model to free the memory
     k.clear_session()
-    model_lstm = load_model(
-        name_of_saved_model, compile=False, custom_objects={"loss": _nse_scaled_loss}
-    )
+    model_lstm = load_model(name_of_saved_model, compile=False, custom_objects={"loss": _nse_scaled_loss})
 
     # Training Database
     x, x_static, _, y = create_lstm_dataset(
@@ -776,9 +747,7 @@ def run_trained_model_local(
     """
     # Delete and reload the model to free the memory
     k.clear_session()
-    model_lstm = load_model(
-        name_of_saved_model, compile=False, custom_objects={"loss": _kge_loss}
-    )
+    model_lstm = load_model(name_of_saved_model, compile=False, custom_objects={"loss": _kge_loss})
 
     # Training Database
     x, y = create_lstm_dataset_local(
