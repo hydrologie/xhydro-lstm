@@ -14,7 +14,7 @@ from xhydro_lstm.lstm_controller import (
 class TestLstmModels:
     """Test suite for the LSTM models."""
 
-    # Set Github URL for getting files for tests
+    # Set GitHub URL for getting files for tests
     GITHUB_URL = "https://github.com/hydrologie/xhydro-testdata"
     BRANCH_OR_COMMIT_HASH = "main"
 

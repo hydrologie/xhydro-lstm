@@ -132,6 +132,7 @@ jobs:
             python=${{ matrix.python-version }}
       - name: Install tensorflow
         run: |
+          # CUDA support requires GPU hardware and runners
           python -m pip install tensorflow
       - name: Install xhydro-lstm
         run: |
