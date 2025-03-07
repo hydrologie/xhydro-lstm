@@ -34,11 +34,11 @@ classifiers = [
 dynamic = ["description", "version"]
 dependencies = [
   "charset-normalizer==3.1.0",
-  "libnetcdf",
-  "scikit-learn",
+  "netcdf4 >=1.7.2",
+  "numpy >=1.24.0",
+  "scikit-learn >=1.2.0",
   "tensorflow[and-cuda] >=2.10",
-  "xarray",
-  "netcdf4",
+  "xarray >=2023.11.0",
   "xhydro"
 ]
 
@@ -69,9 +69,9 @@ docs = [
   "ipython",
   "jupyter_client",
   "nbsphinx >=0.9.5",
-  "pandoc",
-  "sphinx >=7.0.0",
-  "sphinx-codeautolink >=0.16.2",
+  "sphinx >=7.1.0,<8.2.0",
+  "sphinx-autodoc-typehints",
+  "sphinx-codeautolink",
   "sphinx-copybutton",
   "sphinx-intl",
   "sphinx-rtd-theme >=1.0"
