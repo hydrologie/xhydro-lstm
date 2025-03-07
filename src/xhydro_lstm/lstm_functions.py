@@ -13,7 +13,7 @@ from .create_datasets import (
     remove_nans_func,
     remove_nans_func_local,
 )
-from .LSTM_static import (
+from .lstm_static import (
     TrainingGenerator,
     TrainingGeneratorLocal,
     get_list_of_LSTM_models,
@@ -444,7 +444,7 @@ def perform_initial_train(
     ----------
     model_structure : str
         The version of the LSTM model that we want to use to apply to our data. Must be the name of a function that
-        exists in LSTM_static.py.
+        exists in lstm_static.py.
     use_parallel : bool
         Flag to make use of multiple GPUs to accelerate training further. Models trained on multiple GPUs can have
         larger batch_size values as different batches can be run on different GPUs in parallel. Speedup is not linear as
@@ -578,7 +578,7 @@ def perform_initial_train_local(
     ----------
     model_structure : str
         The version of the LSTM model that we want to use to apply to our data. Must be the name of a function that
-        exists in LSTM_static.py.
+        exists in lstm_static.py.
     use_parallel : bool
         Flag to make use of multiple GPUs to accelerate training further. Models trained on multiple GPUs can have
         larger batch_size values as different batches can be run on different GPUs in parallel. Speedup is not linear as

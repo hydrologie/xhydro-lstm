@@ -33,8 +33,8 @@ def control_regional_lstm_training(
     do_simulation: bool = True,
     training_func: str = "nse_scaled",
     filename_base: str = "LSTM_results",
-    simulation_phases: list = None,
-    name_of_saved_model: str = None,
+    simulation_phases: list | None = None,
+    name_of_saved_model: str | None = None,
 ):
     """Control the regional LSTM model training and simulation.
 
@@ -86,7 +86,7 @@ def control_regional_lstm_training(
         used to perform a simulation by passing an existing model in "name_of_saved_model".
     model_structure : str
         The version of the LSTM model that we want to use to apply to our data. Must be the name of a function that
-        exists in LSTM_static.py.
+        exists in lstm_static.py.
     do_simulation : bool
         Indicate that simulations should be performed to obtain simulated streamflow and KGE metrics on the watersheds
         of interest, using the "name_of_saved_model" pre-trained model. If set to True and 'do_train' is True, then the
@@ -98,10 +98,10 @@ def control_regional_lstm_training(
     filename_base : str
         Name of the trained model that will be trained if it does not already exist. Do not add the ".keras" extension,
         it will be added automatically.
-    simulation_phases : list of str
+    simulation_phases : list of str, optional
         List of periods to generate the simulations. Can contain ['train','valid','test','full'], corresponding to the
         training, validation, testing and complete periods, respectively.
-    name_of_saved_model : str
+    name_of_saved_model : str, optional
         Path to the model that has been pre-trained if required for simulations.
 
     Returns
@@ -243,8 +243,8 @@ def control_local_lstm_training(
     do_simulation: bool = True,
     training_func: str = "kge",
     filename_base: str = "LSTM_results",
-    simulation_phases: list = None,
-    name_of_saved_model: str = None,
+    simulation_phases: list | None = None,
+    name_of_saved_model: str | None = None,
 ):
     """Control the regional LSTM model training and simulation.
 
@@ -293,7 +293,7 @@ def control_local_lstm_training(
         used to perform a simulation by passing an existing model in "name_of_saved_model".
     model_structure : str
         The version of the LSTM model that we want to use to apply to our data. Must be the name of a function that
-        exists in LSTM_static.py.
+        exists in lstm_static.py.
     do_simulation : bool
         Indicate that simulations should be performed to obtain simulated streamflow and KGE metrics on the watersheds
         of interest, using the "name_of_saved_model" pre-trained model. If set to True and 'do_train' is True, then the
@@ -305,10 +305,10 @@ def control_local_lstm_training(
     filename_base : str
         Name of the trained model that will be trained if it does not already exist. Do not add the ".keras" extension,
         it will be added automatically.
-    simulation_phases : list of str
+    simulation_phases : list of str, optional
         List of periods to generate the simulations. Can contain ['train','valid','test','full'], corresponding to the
         training, validation, testing and complete periods, respectively.
-    name_of_saved_model : str
+    name_of_saved_model : str, optional
         Path to the model that has been pre-trained if required for simulations.
 
     Returns

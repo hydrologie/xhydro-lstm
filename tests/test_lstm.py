@@ -1,6 +1,7 @@
 """Test suite for LSTM model implementations"""
 
 import os
+from pathlib import Path
 
 import pooch
 
@@ -81,7 +82,7 @@ class TestLstmModels:
 
         assert len(kge_results[0]) == 4
         assert len(flow_results[0]) == 4
-        assert os.path.isfile(name_of_saved_model)
+        assert Path(name_of_saved_model).is_file()
 
         # Do a sim with no training
         do_train = False
@@ -109,7 +110,7 @@ class TestLstmModels:
 
         assert len(kge_results[0]) == 4
         assert len(flow_results[0]) == 4
-        assert os.path.isfile(name_of_saved_model)
+        assert Path(name_of_saved_model).is_file()
 
     def test_train_single_catchment(self):
         """Test the regional LSTM model simulation after training."""
@@ -138,7 +139,7 @@ class TestLstmModels:
 
         assert len(kge_results) == 4
         assert len(flow_results) == 4
-        assert os.path.isfile(name_of_saved_model)
+        assert Path(name_of_saved_model).is_file()
 
         training_func = "kge"
         do_train = False
