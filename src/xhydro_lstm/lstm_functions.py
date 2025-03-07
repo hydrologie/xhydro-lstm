@@ -1,5 +1,7 @@
 """Collection of functions required to process LSTM models and their required data."""
 
+from __future__ import annotations
+
 import numpy as np
 import tensorflow as tf
 import tensorflow.keras.backend as k

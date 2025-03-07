@@ -1,8 +1,9 @@
 """Tools to create the datasets to be used in LSTM model training and simulation."""
 
+from __future__ import annotations
+
 import os
 from pathlib import Path
-from typing import Union
 
 import numpy as np
 import xarray as xr
@@ -18,7 +19,7 @@ __all__ = [
 
 
 def create_dataset_flexible(
-    filename: Union[str, os.PathLike],
+    filename: str | os.PathLike,
     dynamic_var_tags: list,
     qsim_pos: list,
     static_var_tags: list,
@@ -103,7 +104,7 @@ def create_dataset_flexible(
 
 
 def create_dataset_flexible_local(
-    filename: Union[str, os.PathLike],
+    filename: str | os.PathLike,
     dynamic_var_tags: list,
     qsim_pos: list,
 ):

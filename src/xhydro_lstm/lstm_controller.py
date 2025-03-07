@@ -1,5 +1,7 @@
 """Control the LSTM training and simulation tools to make clean workflows."""
 
+from __future__ import annotations
+
 import os
 import tempfile
 from pathlib import Path

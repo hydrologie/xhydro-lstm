@@ -1,6 +1,7 @@
 """Test suite for LSTM model implementations"""
 
-import os
+from __future__ import annotations
+
 from pathlib import Path
 
 import pooch
