@@ -19,6 +19,8 @@
 #
 import os
 import sys
+from typing import Any
+
 sys.path.insert(0, os.path.abspath('..'))
 
 import xhydro_lstm
@@ -62,10 +64,8 @@ extlinks = {
 templates_path = ['_templates']
 
 # The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-#
-# source_suffix = ['.rst', '.md']
-source_suffix = ['.rst']
+# You can specify multiple suffix as a dictionary of suffix: filetype
+source_suffix = {'.rst': 'restructuredtext'}
 
 # The master toctree document.
 master_doc = 'index'
@@ -136,7 +136,7 @@ htmlhelp_basename = 'xhydro_lstmdoc'
 
 # -- Options for LaTeX output ------------------------------------------
 
-latex_elements = {
+latex_elements: dict[str, Any] = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
