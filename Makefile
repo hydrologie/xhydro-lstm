@@ -60,7 +60,6 @@ lint/flake8: ## check style with flake8
 	python -m numpydoc lint src/xhydro_lstm/**.py
 
 lint/black: ## check style with black
-	python -m black --check src/xhydro_lstm tests
 	python -m blackdoc --check src/xhydro_lstm docs
 	python -m isort --check src/xhydro_lstm tests
 

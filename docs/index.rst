@@ -8,6 +8,7 @@ Welcome to xhydro-lstm's documentation!
    readme
    installation
    usage
+   notebooks/lstm
    contributing
    releasing
    authors

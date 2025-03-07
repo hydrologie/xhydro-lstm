@@ -18,6 +18,8 @@
 # limitations under the License.
 ###################################################################################
 
+from __future__ import annotations
+
 __author__ = """Richard Arsenault"""
 __email__ = "Richard.Arsenault@etsmtl.ca"
 __version__ = "0.1.1-dev.0"

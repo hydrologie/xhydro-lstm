@@ -36,9 +36,11 @@ import xhydro_lstm
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.napoleon',
     'sphinx.ext.extlinks',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
+    'nbsphinx',
     'sphinx_codeautolink',
     'sphinx_copybutton',
 ]
@@ -123,8 +125,8 @@ html_theme_options = {"style_external_links": True}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-if not os.path.exists("_static"):
-    os.makedirs("_static")
+if not os.path.exists('_static'):
+    os.makedirs('_static')
 html_static_path = ['_static']
 
 

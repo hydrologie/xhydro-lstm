@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 """Tests for `xhydro_lstm` package."""
 
+from __future__ import annotations
+
 import pathlib
 from importlib.util import find_spec
 
-from xhydro_lstm import xhydro_lstm  # noqa: F401
-
 # import pytest
+
 
 # @pytest.fixture
 # def response():
