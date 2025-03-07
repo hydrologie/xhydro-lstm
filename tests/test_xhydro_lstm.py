@@ -39,4 +39,4 @@ def test_package_metadata():
         contents = f.read()
         assert """Richard Arsenault""" in contents
         assert '__email__ = "Richard.Arsenault@etsmtl.ca"' in contents
-        assert '__version__ = "0.1.1-dev.0"' in contents
+        assert '__version__ = "0.1.1-dev.1"' in contents

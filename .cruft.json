@@ -11,7 +11,7 @@
       "project_slug": "xhydro_lstm",
       "project_short_description": "Hydrological modelling using LSTMs.",
       "pypi_username": "richardarsenault",
-      "version": "0.1.1-dev.0",
+      "version": "0.1.1-dev.1",
       "use_pytest": "y",
       "use_black": "y",
       "use_conda": "y",
