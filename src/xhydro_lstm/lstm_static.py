@@ -1,6 +1,7 @@
 """LSTM model definition and tools for LSTM model training."""
 
 import math
+from typing import Callable
 
 import numpy as np
 import tensorflow as tf
@@ -20,8 +21,9 @@ __all__ = [
 ]
 
 
-def get_list_of_LSTM_models(model_structure):  # noqa: N802
-    """Create a training generator to manage the GPU memory during training.
+def get_list_of_LSTM_models(model_structure) -> Callable:  # noqa: N802
+    """
+    Create a training generator to manage the GPU memory during training.
 
     Parameters
     ----------
@@ -31,7 +33,7 @@ def get_list_of_LSTM_models(model_structure):  # noqa: N802
 
     Returns
     -------
-    function :
+    Callable
         Handle to the LSTM model function.
     """
     # Create a list of available models:
@@ -51,21 +53,22 @@ def get_list_of_LSTM_models(model_structure):  # noqa: N802
 
 
 class TrainingGenerator(tf.keras.utils.Sequence):
-    """Create a training generator to manage the GPU memory during training.
+    """
+    Create a training generator to manage the GPU memory during training.
 
     Parameters
     ----------
-    x_set : np.ndarray
+    x_set : numpy.ndarray
         Tensor of size [batch_size x window_size x n_dynamic_variables] that contains the batch of dynamic (i.e.
         timeseries) variables that will be used during training.
-    x_set_static : np.ndarray
+    x_set_static : numpy.ndarray
         Tensor of size [batch_size x n_static_variables] that contains the batch of static (i.e. catchment descriptors)
         variables that will be used during training.
-    x_set_q_stds : np.ndarray
+    x_set_q_stds : numpy.ndarray
         Tensor of size [batch_size] that contains the standard deviation of scaled streamflow values for the catchment
         associated to the data in x_set and x_set_static. Each data point could come from any catchment and this q_std
         variable helps scale the objective function.
-    y_set : np.ndarray
+    y_set : numpy.ndarray
         Tensor of size [batch_size] containing the target variable for the same time point as in x_set, x_set_static and
         x_set_q_stds. Usually the streamflow for the day associated to each of the training points.
     batch_size : int
@@ -106,14 +109,15 @@ class TrainingGenerator(tf.keras.utils.Sequence):
 
 
 class TrainingGeneratorLocal(tf.keras.utils.Sequence):
-    """Create a training generator to manage the GPU memory during training.
+    """
+    Create a training generator to manage the GPU memory during training.
 
     Parameters
     ----------
-    x_set : np.ndarray
+    x_set : numpy.ndarray
         Tensor of size [batch_size x window_size x n_dynamic_variables] that contains the batch of dynamic (i.e.
         timeseries) variables that will be used during training.
-    y_set : np.ndarray
+    y_set : numpy.ndarray
         Tensor of size [batch_size] containing the target variable for the same time point as in x_set, x_set_static and
         x_set_q_stds. Usually the streamflow for the day associated to each of the training points.
     batch_size : int
@@ -150,14 +154,15 @@ class TrainingGeneratorLocal(tf.keras.utils.Sequence):
 
 
 class TestingGenerator(tf.keras.utils.Sequence):
-    """Create a testing generator to manage the GPU memory during training.
+    """
+    Create a testing generator to manage the GPU memory during training.
 
     Parameters
     ----------
-    x_set : np.ndarray
+    x_set : numpy.ndarray
         Tensor of size [batch_size x window_size x n_dynamic_variables] that contains the batch of dynamic (i.e.
         timeseries) variables that will be used during training.
-    x_set_static : np.ndarray
+    x_set_static : numpy.ndarray
         Tensor of size [batch_size x n_static_variables] that contains the batch of static (i.e. catchment descriptors)
         variables that will be used during training.
     batch_size : int
@@ -187,11 +192,12 @@ class TestingGenerator(tf.keras.utils.Sequence):
 
 
 class TestingGeneratorLocal(tf.keras.utils.Sequence):
-    """Create a testing generator to manage the GPU memory during training.
+    """
+    Create a testing generator to manage the GPU memory during training.
 
     Parameters
     ----------
-    x_set : np.ndarray
+    x_set : numpy.ndarray
         Tensor of size [batch_size x window_size x n_dynamic_variables] that contains the batch of dynamic (i.e.
         timeseries) variables that will be used during training.
     batch_size : int
@@ -220,16 +226,17 @@ class TestingGeneratorLocal(tf.keras.utils.Sequence):
 
 
 def _kge_loss(data, y_pred):
-    """Compute the Kling-Gupta Efficiency (KGE) criterion under Keras for Tensorflow training.
+    """
+    Compute the Kling-Gupta Efficiency (KGE) criterion under Keras for Tensorflow training.
 
     Needs to be separate from the regular objective function calculations because it uses Keras/tensor arithmetic for
     GPU.
 
     Parameters
     ----------
-    data : np.ndarray
+    data : numpy.ndarray
         Observed streamflow used as target for the LSTM training.
-    y_pred : np.ndarray
+    y_pred : numpy.ndarray
         Simulated streamflow generated by the LSTM during training.
 
     Returns
@@ -258,16 +265,17 @@ def _kge_loss(data, y_pred):
 
 
 def _nse_scaled_loss(data, y_pred):
-    """Compute the modified NSE loss for regional training.
+    """
+    Compute the modified NSE loss for regional training.
 
     Applies a random noise element for robustness, as well scales the flows according to their standard deviations to be
     able to compute the nse with data from multiple catchments all scaled and normalized.
 
     Parameters
     ----------
-    data : np.ndarray
+    data : numpy.ndarray
         Tensor of the target variable (column 1) and observed streamflow standard deviations (column 2).
-    y_pred : np.ndarray
+    y_pred : numpy.ndarray
         Tensor of the predicted variable from the LSTM model.
 
     Returns
@@ -294,7 +302,8 @@ def _simple_regional_lstm(
     training_func: str,
     checkpoint_path: str = "tmp.keras",
 ):
-    """Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
+    """
+    Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
 
     Parameters
     ----------
@@ -367,7 +376,8 @@ def _simple_local_lstm(
     training_func: str,
     checkpoint_path: str = "tmp.keras",
 ):
-    """Define the local LSTM model structure and hyperparameters to use.
+    """
+    Define the local LSTM model structure and hyperparameters to use.
 
     Must be updated by users to modify model structures.
 
@@ -438,7 +448,8 @@ def _dummy_regional_lstm(
     training_func: str,
     checkpoint_path: str = "tmp.keras",
 ):
-    """Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
+    """
+    Define the LSTM model structure and hyperparameters to use. Must be updated by users to modify model structures.
 
     Parameters
     ----------
@@ -509,7 +520,8 @@ def _dummy_local_lstm(
     training_func: str,
     checkpoint_path: str = "tmp.keras",
 ):
-    """Define the local LSTM model structure and hyperparameters to use.
+    """
+    Define the local LSTM model structure and hyperparameters to use.
 
     Must be updated by users to modify model structures.
 
@@ -566,18 +578,19 @@ def _dummy_local_lstm(
     return model_lstm, callback
 
 
-def _step_decay(epoch: int):
-    """Callback for learning rate tuning during LSTM model training.
+def _step_decay(epoch: int) -> float:
+    """
+    Callback for learning rate tuning during LSTM model training.
 
     Parameters
     ----------
     epoch : int
-        Current epoch number during training. Used to adapt the learning rate after a certain number of epochs to aid in
-        model training convergence.
+        Current epoch number during training.
+        Used to adapt the learning rate after a certain number of epochs to aid in model training convergence.
 
     Returns
     -------
-    lrate
+    lrate : float
         The updated learning rate.
     """
     initial_lrate = 0.0005
@@ -600,17 +613,18 @@ def run_trained_model(
     name_of_saved_model: str,
     remove_nans: bool,
 ):
-    """Run the trained regional LSTM model on a single catchment from a larger set.
+    """
+    Run the trained regional LSTM model on a single catchment from a larger set.
 
     Parameters
     ----------
-    arr_dynamic : np.ndarray
+    arr_dynamic : numpy.ndarray
         Tensor of size [time_steps x window_size x (n_dynamic_variables+1)] that contains the dynamic (i.e. time-series)
         variables that will be used during training. The first element in axis=2 is the observed flow.
-    arr_static : np.ndarray
+    arr_static : numpy.ndarray
         Tensor of size [time_steps x n_static_variables] that contains the static (i.e. catchment descriptors) variables
         that will be used during training.
-    q_stds : np.ndarray
+    q_stds : numpy.ndarray
         Tensor of size [time_steps] that contains the standard deviation of scaled streamflow values for the catchment
         associated to the data in arr_dynamic and arr_static.
     window_size : int
@@ -620,7 +634,7 @@ def run_trained_model(
         can improve results.
     w : int
         Number of the watershed from the list of catchments that will be simulated.
-    idx_scenario : np.ndarray
+    idx_scenario : numpy.ndarray
         2-element array of indices of the beginning and end of the desired period for which the LSTM model should be
         simulated.
     batch_size : int
@@ -652,7 +666,7 @@ def run_trained_model(
         arr_static=arr_static,
         q_stds=q_stds,
         window_size=window_size,
-        watershed_list=w[np.newaxis],
+        watershed_list=w[np.newaxis],  # FIXME: This is indexing an int
         idx=idx_scenario,
         remove_nans=remove_nans,
     )
@@ -673,12 +687,21 @@ def run_trained_model(
     return kge, flows
 
 
-def obj_fun_kge(qobs, qsim):
+def obj_fun_kge(qobs: np.ndarray, qsim: np.ndarray) -> float:
     """
-    # This function computes the Kling-Gupta Efficiency (KGE) criterion
-    :param Qobs: Observed streamflow
-    :param Qsim: Simulated streamflow
-    :return: kge: KGE criterion value
+    Compute the Kling-Gupta Efficiency (KGE) criterion.
+
+    Parameters
+    ----------
+    qobs : numpy.ndarray
+        Observed streamflow.
+    qsim : numpy.ndarray
+        Simulated streamflow.
+
+    Returns
+    -------
+    float
+        KGE criterion value.
     """
     # Remove all nans from both observed and simulated streamflow
     ind_nan = np.isnan(qobs)
@@ -713,11 +736,12 @@ def run_trained_model_local(
     name_of_saved_model: str,
     remove_nans: bool,
 ):
-    """Run the trained regional LSTM model on a single catchment from a larger set.
+    """
+    Run the trained regional LSTM model on a single catchment from a larger set.
 
     Parameters
     ----------
-    arr_dynamic : np.ndarray
+    arr_dynamic : numpy.ndarray
         Tensor of size [time_steps x window_size x (n_dynamic_variables+1)] that contains the dynamic (i.e. time-series)
         variables that will be used during training. The first element in axis=2 is the observed flow.
     window_size : int

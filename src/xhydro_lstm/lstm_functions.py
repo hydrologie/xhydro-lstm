@@ -41,7 +41,8 @@ def scale_dataset(
     train_pct: int,
     valid_pct: int,
 ):
-    """Scale the datasets using training data to normalize all inputs, ensuring weighting is unbiased.
+    """
+    Scale the datasets using training data to normalize all inputs, ensuring weighting is unbiased.
 
     Parameters
     ----------
@@ -177,7 +178,8 @@ def scale_dataset_local(
     train_pct: int,
     valid_pct: int,
 ):
-    """Scale the datasets using training data to normalize all inputs, ensuring weighting is unbiased.
+    """
+    Scale the datasets using training data to normalize all inputs, ensuring weighting is unbiased.
 
     Parameters
     ----------
@@ -269,7 +271,8 @@ def split_dataset(
     window_size: int,
     valid_idx: np.array,
 ):
-    """Extract only the required data from the entire dataset according to the desired period.
+    """
+    Extract only the required data from the entire dataset according to the desired period.
 
     Parameters
     ----------
@@ -370,7 +373,8 @@ def split_dataset_local(
     window_size: int,
     valid_idx: np.ndarray,
 ):
-    """Extract only the required data from the entire dataset according to the desired period.
+    """
+    Extract only the required data from the entire dataset according to the desired period.
 
     Parameters
     ----------
@@ -438,7 +442,8 @@ def perform_initial_train(
     training_func: str,
     use_cpu: bool = False,
 ):
-    """Train the LSTM model using preprocessed data.
+    """
+    Train the LSTM model using preprocessed data.
 
     Parameters
     ----------
@@ -572,7 +577,8 @@ def perform_initial_train_local(
     training_func: str,
     use_cpu: bool = False,
 ):
-    """Train the LSTM model using preprocessed data on a local catchment.
+    """
+    Train the LSTM model using preprocessed data on a local catchment.
 
     Parameters
     ----------
@@ -694,7 +700,8 @@ def run_model_after_training(
     all_idx: np.ndarray,
     simulation_phases: list,
 ):
-    """Simulate streamflow on given input data for a user-defined number of periods.
+    """
+    Simulate streamflow on given input data for a user-defined number of periods.
 
     Parameters
     ----------
@@ -837,7 +844,8 @@ def run_model_after_training_local(
     all_idx: np.ndarray,
     simulation_phases: list,
 ):
-    """Simulate streamflow on given input data for a user-defined number of periods.
+    """
+    Simulate streamflow on given input data for a user-defined number of periods.
 
     Parameters
     ----------

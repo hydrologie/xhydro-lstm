@@ -23,7 +23,8 @@ def create_dataset_flexible(
     qsim_pos: list,
     static_var_tags: list,
 ):
-    """Prepare the arrays of dynamic, static and observed flow variables.
+    """
+    Prepare the arrays of dynamic, static and observed flow variables.
 
     A few things are absolutely required:
         1. a "watershed" coordinate that contains the ID of watersheds, such that we can preallocate the size of
@@ -106,7 +107,8 @@ def create_dataset_flexible_local(
     dynamic_var_tags: list,
     qsim_pos: list,
 ):
-    """Prepare the arrays of dynamic and observed flow variables.
+    """
+    Prepare the arrays of dynamic and observed flow variables.
 
     A few things are absolutely required:
         1. a "watershed" variable that contains the ID of watersheds, such that
@@ -171,7 +173,8 @@ def create_lstm_dataset(
     idx: np.ndarray,
     remove_nans: bool = True,
 ):
-    """Create the LSTM dataset and shape the data using look-back windows and preparing all data for training.
+    """
+    Create the LSTM dataset and shape the data using look-back windows and preparing all data for training.
 
     Parameters
     ----------
@@ -249,7 +252,8 @@ def create_lstm_dataset_local(
     idx: np.ndarray,
     remove_nans: bool = True,
 ):
-    """Create the local LSTM dataset and shape the data using look-back windows and preparing all data for training.
+    """
+    Create the local LSTM dataset and shape the data using look-back windows and preparing all data for training.
 
     Parameters
     ----------
@@ -293,7 +297,8 @@ def _extract_windows_vectorized(
     array: np.ndarray,
     sub_window_size: int,
 ):
-    """Create the array where each day contains data from a previous period (look-back period).
+    """
+    Create the array where each day contains data from a previous period (look-back period).
 
     Parameters
     ----------
@@ -322,7 +327,8 @@ def _extract_watershed_block(
     q_std_w: np.ndarray,
     window_size: int,
 ):
-    """Extract all series of the desired window length over all features for a given watershed.
+    """
+    Extract all series of the desired window length over all features for a given watershed.
 
     Create the LSTM tensor format of data from the regular input arrays. Both dynamic and static variables are
     extracted.
@@ -378,7 +384,8 @@ def _extract_watershed_block(
 
 
 def _extract_watershed_block_local(arr_dynamic: np.ndarray, window_size: int):
-    """Extract all series of the desired window length over all features for a given watershed.
+    """
+    Extract all series of the desired window length over all features for a given watershed.
 
     Create the LSTM tensor format of data from the regular input arrays. Both dynamic and static variables are
     extracted.
@@ -417,7 +424,8 @@ def _extract_watershed_block_local(arr_dynamic: np.ndarray, window_size: int):
 
 
 def remove_nans_func(y: np.ndarray, x: np.ndarray, x_q_std: np.ndarray, x_static: np.ndarray):
-    """Check for nans in the variable "y" and remove all lines containing those nans in all datasets.
+    """
+    Check for nans in the variable "y" and remove all lines containing those nans in all datasets.
 
     Parameters
     ----------
@@ -454,7 +462,8 @@ def remove_nans_func(y: np.ndarray, x: np.ndarray, x_q_std: np.ndarray, x_static
 
 
 def remove_nans_func_local(y: np.ndarray, x: np.ndarray):
-    """Check for nans in the variable "y" and remove all lines containing those nans in all datasets.
+    """
+    Check for nans in the variable "y" and remove all lines containing those nans in all datasets.
 
     Parameters
     ----------

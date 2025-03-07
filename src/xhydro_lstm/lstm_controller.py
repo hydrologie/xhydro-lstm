@@ -36,7 +36,8 @@ def control_regional_lstm_training(
     simulation_phases: list | None = None,
     name_of_saved_model: str | None = None,
 ):
-    """Control the regional LSTM model training and simulation.
+    """
+    Control the regional LSTM model training and simulation.
 
     Parameters
     ----------
@@ -246,7 +247,8 @@ def control_local_lstm_training(
     simulation_phases: list | None = None,
     name_of_saved_model: str | None = None,
 ):
-    """Control the regional LSTM model training and simulation.
+    """
+    Control the regional LSTM model training and simulation.
 
     Parameters
     ----------
