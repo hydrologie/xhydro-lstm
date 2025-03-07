@@ -36,9 +36,11 @@ import xhydro_lstm
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.napoleon',
     'sphinx.ext.extlinks',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
+    'nbsphinx',
     'sphinx_codeautolink',
     'sphinx_copybutton',
 ]
