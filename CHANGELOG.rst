@@ -3,7 +3,6 @@ Changelog
 =========
 
 ..
-
     `Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
     ------------------------------------------------------------------
 
@@ -22,7 +21,7 @@ Changelog
 `v0.1.1 <https://github.com/hydrologie/xhydro_lstm/tree/0.1.1>`_ (2025-03-10)
 -----------------------------------------------------------------------------
 
-Contributors: Trevor James Smith (:user:`Zeitsperre`), Richard Arsenault (:user:`richardarsenault`), Gabriel Rondeau-Genesse (:user:`RondeauG`).
+Contributors: Trevor James Smith (:user:`Zeitsperre`), Richard Arsenault (:user:`richardarsenault`).
 
 * First release on PyPI.
 
