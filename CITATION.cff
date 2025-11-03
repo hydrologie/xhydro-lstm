@@ -1,0 +1,37 @@
+# This CITATION.cff file was generated with cffinit and templated with cookiecutter.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: "1.2.0"
+title: "xhydro-lstm"
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: "software"
+authors:
+  - given-names: 'Richard'
+    family-names: 'Arsenault'
+    email: 'Richard.Arsenault@etsmtl.ca'
+    orcid: 'https://orcid.org/0000-0003-2834-2750'
+  - given-names: "Gabriel"
+    family-names: "Rondeau-Genesse"
+    affiliation: "Ouranos"
+    city: "Montreal"
+    country: "CA"
+    email: 'rondeau-genesse.gabriel@ouranos.ca'
+    orcid: "https://orcid.org/0000-0003-3389-9406"
+  - given-names: "Trevor James"
+    family-names: "Smith"
+    affiliation: "Ouranos"
+    city: "Montreal"
+    country: "CA"
+    email: 'smith.trevorj@ouranos.ca'
+    orcid: "https://orcid.org/0000-0001-5393-8359"
+contact:
+  - given-names: 'Richard'
+    family-names: 'Arsenault'
+    email: 'Richard.Arsenault@etsmtl.ca'
+    orcid: 'https://orcid.org/0000-0003-2834-2750'
+repository-code: "https://github.com/hydrologie/xhydro-lstm"
+abstract: "Hydrological modelling using LSTMs."
+license: "Apache-2.0"
+version: "0.1.0"
