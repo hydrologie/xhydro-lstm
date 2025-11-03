@@ -23,6 +23,7 @@ from .lstm_static import (
     run_trained_model_local,
 )
 
+
 __all__ = [
     "perform_initial_train",
     "perform_initial_train_local",
