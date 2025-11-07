@@ -170,7 +170,6 @@ source = ["src/xhydro_lstm/", "*/site-packages/xhydro_lstm/"]
 [tool.coverage.run]
 omit = ["tests/*.py"]
 relative_files = true
-source = ["xhydro_lstm"]
 
 [tool.deptry]
 extend_exclude = ["docs"]
