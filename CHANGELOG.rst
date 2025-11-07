@@ -11,7 +11,8 @@ Changelog
     Changes
     ^^^^^^^
     * First functional version of the package. (:pull:`14`).
-    * Updated cookiecutter to latest template version ():
+    * Updated cookiecutter to latest template version (:pull:`131`):
+        * Python 3.9 support has been dropped.
         * Replaced `tox.ini` with `tox.toml`.
         * Updated GitHub Actions workflows.
         * Updated base dependencies for CI workflows.
