@@ -10,7 +10,13 @@ Changelog
 
     Changes
     ^^^^^^^
-    * First functional version of the package. (:pull:`14`)
+    * First functional version of the package. (:pull:`14`).
+    * Updated cookiecutter to latest template version ():
+        * Replaced `tox.ini` with `tox.toml`.
+        * Updated GitHub Actions workflows.
+        * Updated base dependencies for CI workflows.
+        * Now using Contributor Covenant v3.0 for the code of conduct.
+        * Replaced `black`, `blackdoc`, and `isort` with `ruff` for code formatting and linting.
 
     Fixes
     ^^^^^
