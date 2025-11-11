@@ -1,9 +1,8 @@
 """LSTM model definition and tools for LSTM model training."""
 
 from __future__ import annotations
-
 import math
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 import tensorflow as tf
@@ -11,6 +10,7 @@ import tensorflow.keras.backend as k
 from tensorflow.keras.models import load_model
 
 from .create_datasets import create_lstm_dataset, create_lstm_dataset_local
+
 
 __all__ = [
     "TestingGenerator",
@@ -46,8 +46,8 @@ def get_list_of_LSTM_models(model_structure) -> Callable:  # noqa: N802
             "dummy_local_lstm": _dummy_local_lstm,
             "dummy_regional_lstm": _dummy_regional_lstm,
         }
-    except Exception:  # noqa: BLE001
-        raise ValueError("The LSTM model structure desired is not present in the available model dictionary.")
+    except Exception as err:  # noqa: BLE001
+        raise ValueError("The LSTM model structure desired is not present in the available model dictionary.") from err
 
     model_handle = model_structure_dict[model_structure]
 
