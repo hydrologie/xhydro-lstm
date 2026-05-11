@@ -3,7 +3,7 @@ Changelog
 =========
 
 ..
-    `Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
+    `Unreleased <https://github.com/hydrologie/xhydro-lstm>`_ (latest)
     ------------------------------------------------------------------
 
     Contributors:
@@ -25,7 +25,7 @@ Changelog
 
 .. _changes_0.1.0:
 
-`v0.1.1 <https://github.com/hydrologie/xhydro_lstm/tree/0.1.1>`_ (2025-03-10)
+`v0.1.1 <https://github.com/hydrologie/xhydro-lstm/tree/0.1.1>`_ (2025-03-10)
 -----------------------------------------------------------------------------
 
 Contributors: Trevor James Smith (:user:`Zeitsperre`), Richard Arsenault (:user:`richardarsenault`).

@@ -95,7 +95,7 @@ dependencies = [
 extras = []
 
 [project.urls]
-"Homepage" = "https://xhydro_lstm.readthedocs.io/"
+"Homepage" = "https://xhydro-lstm.readthedocs.io/"
 "Changelog" = "https://xhydro-lstm.readthedocs.io/en/stable/changelog.html"
 # "About Ouranos" = "https://www.ouranos.ca/en/"
 "Issue tracker" = "https://github.com/hydrologie/xhydro-lstm/issues"
@@ -120,12 +120,12 @@ serialize = [
 filename = "CHANGELOG.rst"
 include_bumps = ["release"]
 search = """\
-`Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
+`Unreleased <https://github.com/hydrologie/xhydro-lstm>`_ (latest)
 ------------------------------------------------------------------
 """
 replace = """\
 ..
-    `Unreleased <https://github.com/hydrologie/xhydro_lstm>`_ (latest)
+    `Unreleased <https://github.com/hydrologie/xhydro-lstm>`_ (latest)
     ------------------------------------------------------------------
 
     Contributors:
@@ -140,7 +140,7 @@ replace = """\
 
 .. _changes_{new_version}:
 
-`v{new_version} <https://github.com/hydrologie/xhydro_lstm/tree/{new_version}>`_ ({now:%Y-%m-%d})
+`v{new_version} <https://github.com/hydrologie/xhydro-lstm/tree/{new_version}>`_ ({now:%Y-%m-%d})
 ---------------------------------------------------------------------------------------------
 """
 

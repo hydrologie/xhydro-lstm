@@ -32,8 +32,8 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _`Ouranosinc/cookiecutter-pypackage`: https://github.com/Ouranosinc/cookiecutter-pypackage
 
-.. |build| image:: https://github.com/hydrologie/xhydro_lstm/actions/workflows/main.yml/badge.svg
-        :target: https://github.com/hydrologie/xhydro_lstm/actions
+.. |build| image:: https://github.com/hydrologie/xhydro-lstm/actions/workflows/main.yml/badge.svg
+        :target: https://github.com/hydrologie/xhydro-lstm/actions
         :alt: Build Status
 
 ..
@@ -50,7 +50,7 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :alt: Documentation Status
 
 .. |license| image:: https://img.shields.io/github/license/hydrologie/xhydro-lstm.svg
-        :target: https://github.com/hydrologie/xhydro_lstm/blob/main/LICENSE
+        :target: https://github.com/hydrologie/xhydro-lstm/blob/main/LICENSE
         :alt: License
 
 ..
@@ -78,9 +78,9 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/astral-sh/ruff
         :alt: Ruff
 
-.. |status| image:: https://www.repostatus.org/badges/latest/active.svg
-        :target: https://www.repostatus.org/#active
-        :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
+.. |status| image:: https://www.repostatus.org/badges/latest/abandoned.svg
+        :alt: Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.
+        :target: https://www.repostatus.org/#abandoned
 
 .. |versions| image:: https://img.shields.io/pypi/pyversions/xhydro-lstm.svg
         :target: https://pypi.python.org/pypi/xhydro-lstm
