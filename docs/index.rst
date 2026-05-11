@@ -20,6 +20,11 @@ Welcome to xhydro-lstm's documentation!
 
    apidoc/modules
 
+.. toctree::
+   :caption: GitHub Repository
+
+   hydrologie/xhydro-lstm <https://github.com/hydrologie/xhydro-lstm>
+
 Indices and tables
 ==================
 * :ref:`genindex`

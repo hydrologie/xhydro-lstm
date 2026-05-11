@@ -1,6 +1,7 @@
 name: xhydro_lstm
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
   - python >=3.12,<3.13
   # Docs
@@ -9,9 +10,9 @@ dependencies:
   - jupyter_client
   - libnetcdf
   - nbsphinx >=0.9.5
-  - sphinx >=7.1.0,<8.2.0
+  - sphinx >=8.2
   - sphinx-autodoc-typehints
   - sphinx-codeautolink >=0.16.2
-  - sphinx-copybutton
+  - sphinx-copybutton >=0.5.2
   - sphinx-intl
   - sphinx-rtd-theme >=1.0
