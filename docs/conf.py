@@ -17,6 +17,7 @@
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 #
+import datetime
 import os
 import sys
 from typing import Any
@@ -74,7 +75,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'xhydro-lstm'
-copyright = "2024, Richard Arsenault"
+copyright = f"2024--{datetime.datetime.now().year}, Richard Arsenault"
 author = "Richard Arsenault"
 
 # The version info for the project you're documenting, acts as replacement

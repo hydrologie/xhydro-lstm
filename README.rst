@@ -9,7 +9,7 @@ xhydro-lstm
 +----------------------------+-----------------------------------------------------+
 | Open Source                | |license| |ossf-score|                              |
 +----------------------------+-----------------------------------------------------+
-| Coding Standards           | |ruff| |pre-commit|                                 |
+| Coding Standards           | |ruff| |prek| |pre-commit-ci|                       |
 +----------------------------+-----------------------------------------------------+
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
@@ -62,9 +62,13 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://securityscorecards.dev/viewer/?uri=github.com/hydrologie/xhydro-lstm
         :alt: OpenSSF Scorecard
 
-.. |pre-commit| image:: https://results.pre-commit.ci/badge/github/hydrologie/xhydro-lstm/main.svg
+.. |pre-commit-ci| image:: https://results.pre-commit.ci/badge/github/hydrologie/xhydro-lstm/main.svg
         :target: https://results.pre-commit.ci/latest/github/hydrologie/xhydro-lstm/main
         :alt: pre-commit.ci status
+
+.. |prek| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json
+        :target: https://github.com/j178/prek
+        :alt: prek
 
 .. |pypi| image:: https://img.shields.io/pypi/v/xhydro-lstm.svg
         :target: https://pypi.python.org/pypi/xhydro-lstm
@@ -74,9 +78,9 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/astral-sh/ruff
         :alt: Ruff
 
-.. |status| image:: https://www.repostatus.org/badges/latest/active.svg
-        :target: https://www.repostatus.org/#active
-        :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
+.. |status| image:: https://www.repostatus.org/badges/latest/suspended.svg
+        :alt: Project Status: Suspended – Initial development has started, but there has not yet been a stable, usable release; work has been stopped for the time being but the author(s) intend on resuming work.
+        :target: https://www.repostatus.org/#suspended
 
 .. |versions| image:: https://img.shields.io/pypi/pyversions/xhydro-lstm.svg
         :target: https://pypi.python.org/pypi/xhydro-lstm
