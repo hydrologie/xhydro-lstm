@@ -193,6 +193,9 @@ skip = []
 extend_exclude = ["extras"]
 pep621_dev_dependency_groups = ["extras"]
 
+[tool.deptry.package_module_name_map]
+scikit-learn = "sklearn"
+
 [tool.deptry.per_rule_ignores]
 DEP002 = ["charset-normalizer", "h5netcdf", "xhydro"]
 
