@@ -78,9 +78,9 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/astral-sh/ruff
         :alt: Ruff
 
-.. |status| image:: https://www.repostatus.org/badges/latest/abandoned.svg
-        :alt: Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.
-        :target: https://www.repostatus.org/#abandoned
+.. |status| image:: https://www.repostatus.org/badges/latest/suspended.svg
+        :alt: Project Status: Suspended – Initial development has started, but there has not yet been a stable, usable release; work has been stopped for the time being but the author(s) intend on resuming work.
+        :target: https://www.repostatus.org/#suspended
 
 .. |versions| image:: https://img.shields.io/pypi/pyversions/xhydro-lstm.svg
         :target: https://pypi.python.org/pypi/xhydro-lstm
