@@ -18,7 +18,7 @@ Changelog
         * Updated base dependencies for CI workflows.
         * Now using Contributor Covenant v3.0 for the code of conduct.
         * Replaced `black`, `blackdoc`, and `isort` with `ruff` for code formatting and linting.
-    * `hsamiplus` now has guidance documents on acceptable usages of AI and the expected methods of AI usage disclosure. See the documentation for more details. (#114).
+    * `xhydro-lstm` now has guidance documents on acceptable usages of AI and the expected methods of AI usage disclosure. See the documentation for more details. (#114).
     * Updated the cookiecutter template to use the latest commit. (:pull:`169`):
         * Adjusted the permissions for some workflows to address security issues.
         * Added the new "standard" AI disclosure guidance for code contributions.
