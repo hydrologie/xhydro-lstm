@@ -45,23 +45,23 @@ dev = [
   "pip >=26.0.1",
   "prek >=0.3.0",
   "watchdog >=6.0.0",
-  {include-group = "docs"},
-  {include-group = "lint"},
-  {include-group = "test"},
-  {include-group = "tox"}
+  { include-group = "docs" },
+  { include-group = "lint" },
+  { include-group = "test" },
+  { include-group = "tox" }
 ]
 
 [project]
 name = "xhydro-lstm"
 authors = [
-  {name = "Richard Arsenault", email = "Richard.Arsenault@etsmtl.ca"}
+  { name = "Richard Arsenault", email = "Richard.Arsenault@etsmtl.ca" }
 ]
 maintainers = [
-  {name = "Richard Arsenault", email = "Richard.Arsenault@etsmtl.ca"},
-  {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"},
-  {name = "Gabriel Rondeau-Genesse", email = "rondeau-genesse.gabriel@ouranos.ca"}
+  { name = "Richard Arsenault", email = "Richard.Arsenault@etsmtl.ca" },
+  { name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca" },
+  { name = "Gabriel Rondeau-Genesse", email = "rondeau-genesse.gabriel@ouranos.ca" }
 ]
-readme = {file = "README.rst", content-type = "text/x-rst"}
+readme = { file = "README.rst", content-type = "text/x-rst" }
 requires-python = ">=3.10.0"
 keywords = ["xhydro-lstm"]
 license = "Apache-2.0"
